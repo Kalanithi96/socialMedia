@@ -33,14 +33,12 @@ export const updateOneProfile = async (req, res) => {
   }
 };
 export const createOneProfile = async (req, res) => {
-  const { email, username, password, nickname } = req.body;
+  const body = req.body;
   try {
     const newProfile = await profileModel.create({
-      email: email,
-      username: username,
-      password: password,
-      nickname: nickname ?? "",
-    });
+      ...body,
+      nickname: body.nickname ?? "",
+    })
     res.status(200).json({
       message: "Profile Created",
       data: newProfile,

@@ -2,6 +2,7 @@ import express, { json } from "express";
 import dotenv from "dotenv";
 import connectDB from "./db/connectDB.js";
 import profileRouter from "./routes/profile.js";
+import postRouter from "./routes/post.js";
 dotenv.config();
 
 const app = express();
@@ -10,6 +11,7 @@ app.use(express.json())
 app
 
 app.use("/profile", profileRouter);
+app.use("/post", postRouter);
 
 app.get("/", (req, res) => {
   console.log("Hello World");

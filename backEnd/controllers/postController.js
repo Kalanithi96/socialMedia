@@ -35,12 +35,12 @@ export const updateOnePost = async (req, res) => {
 export const createOnePost = async (req, res) => {
   const body = req.body;
   try {
-    const newpost = await postModel.create({
+    const newPost = await postModel.create({
       ...body,
     });
     res.status(200).json({
       message: "Post Created",
-      data: newpost,
+      data: newPost,
     });
   } catch (err) {
     res.status(400).json({

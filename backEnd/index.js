@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./db/connectDB.js";
 import profileRouter from "./routes/profile.js";
 import postRouter from "./routes/post.js";
+import likeRouter from "./routes/like.js";
 dotenv.config();
 
 const app = express();
@@ -12,6 +13,7 @@ app
 
 app.use("/profile", profileRouter);
 app.use("/post", postRouter);
+app.use("/like", likeRouter);
 
 app.get("/", (req, res) => {
   console.log("Hello World");

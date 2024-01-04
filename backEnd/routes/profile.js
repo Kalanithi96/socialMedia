@@ -18,6 +18,6 @@ router
   .route("/:id")
   .get(getOneProfile)
   .delete(deleteOneProfile)
-  .patch(updateOneProfile);
+  .put(updateOneProfile);
 
 export default router;

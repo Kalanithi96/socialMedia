@@ -4,6 +4,7 @@ import connectDB from "./db/connectDB.js";
 import profileRouter from "./routes/profile.js";
 import postRouter from "./routes/post.js";
 import likeRouter from "./routes/like.js";
+import commentRouter from "./routes/comment.js";
 dotenv.config();
 
 const app = express();
@@ -11,9 +12,10 @@ const app = express();
 app.use(express.json())
 app
 
-app.use("/profile", profileRouter);
-app.use("/post", postRouter);
-app.use("/like", likeRouter);
+app.use("/api/v1/profile", profileRouter);
+app.use("/api/v1/post", postRouter);
+app.use("/api/v1/like", likeRouter);
+app.use("/api/v1/comment", commentRouter);
 
 app.get("/", (req, res) => {
   console.log("Hello World");

@@ -38,7 +38,7 @@ export const getAllLikes = async (req, res) => {
   const id = req.query.id;
   try {
     const likes = await likeModel.find(id ? { profile_id: id } : {});
-    res.status(200).json({ message: "Posts fetched", data: likes });
+    res.status(200).json({ message: "Likes fetched", data: likes });
   } catch (err) {
     res.status(400).json({ error: err });
   }

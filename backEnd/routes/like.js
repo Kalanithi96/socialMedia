@@ -1,8 +1,7 @@
 import express from "express";
 import {
   getLikesOfOnePost,
-  deleteOneLike,
-  createOneLike,
+  toggleOneLike,
   getAllLikes,
 } from "../controllers/likeController.js";
 
@@ -11,11 +10,10 @@ const router = express.Router();
 router
   .route("/")
   .get(getAllLikes)
-  .post(createOneLike);
+  .post(toggleOneLike);
 
 router
   .route("/:id")
   .get(getLikesOfOnePost)
-  .delete(deleteOneLike);
 
 export default router;

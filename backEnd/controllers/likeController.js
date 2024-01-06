@@ -12,22 +12,33 @@ export const getLikesOfOnePost = async (req, res) => {
 export const deleteOneLike = async (req, res) => {
   const { id } = req.params;
   try {
-    const like = await likeModel.findByIdAndDelete(id);
     res.status(200).json({ message: "Like deleted", data: like });
   } catch (err) {
     res.status(400).json({ error: err });
   }
 };
-export const createOneLike = async (req, res) => {
+export const toggleOneLike = async (req, res) => {
   const body = req.body;
   try {
-    const newLike = await likeModel.create({
-      ...body,
+    const likes = await likeModel.find({
+      profile_id: body.profile_id,
+      post_id: body.post_id,
     });
-    res.status(200).json({
-      message: "Like Created",
-      data: newLike,
-    });
+    if (likes.length != 0) {
+      const like = await likeModel.findByIdAndDelete(likes[0]._id);
+      res.status(200).json({
+        message: "Like Deleted",
+        data: like,
+      });
+    } else {
+      const newLike = await likeModel.create({
+        ...body,
+      });
+      res.status(200).json({
+        message: "Like Created",
+        data: newLike,
+      });
+    }
   } catch (err) {
     res.status(400).json({
       error: err,
